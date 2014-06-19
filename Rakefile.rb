@@ -1,7 +1,10 @@
 task :install_bower do
 	puts "check bower"
-	version = `bower --version`
-	`npm install bower -g` unless version
+	begin	
+		`bower --version`
+	rescue Exception
+		`npm install bower -g`
+	end
 end
 
 task :install_bootstrap=>:install_bower do
